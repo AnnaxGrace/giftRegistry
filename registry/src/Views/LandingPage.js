@@ -1,62 +1,76 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 
-import Jumbotron from "react-bootstrap/Jumbotron";
+import { firebaseAuth } from "../provider/AuthProvider";
+import { giftsCollection } from "../firebase/firebase";
+
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Nav from "react-bootstrap/Nav";
 
-import ShopImage from "../assets/jumboShop.png";
-import Kaye from "../assets/kayeHeadshot.png";
-
-// import "./scss/Landing.scss";
+import "./landing.css";
+import Button from "react-bootstrap/Button";
 
 function LandingPage() {
+  const { currentUserUID } = useContext(firebaseAuth);
+
+  const getUserList = async () => {
+    giftsCollection.where("uid", "==", currentUserUID)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }
+
+  const addGift = () => {
+    const newItem = giftsCollection.doc(currentUserUID);
+    newItem.set({
+      uid: currentUserUID,
+      item: {
+        itemName: 'party',
+        link: 'its a link',
+        privateToOver: false,
+        purchased: false
+      }
+    });
+  }
+
+  // const getFirebase = async () => {
+  //   const response = await inventoryCollection.get();
+  //   try {
+  //     const inventoryData = response.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+  //     setItems(inventoryData);
+  //     return inventoryData;
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // };
+
+  useEffect(() => {
+    console.log(currentUserUID)
+    getUserList()
+  }, []);
+
   return (
-    <main>
-      <Jumbotron className="jumbo" fluid>
-        <Container>
-          <div className="shop-image">
-            <img
-              src={ShopImage}
-              width="100%"
-              alt="Fun collage of stickers you can buy"
-            />
-            <Nav.Link as={Link} to="/products">
-              <Button id="shop-btn">Shop Now!</Button>
-            </Nav.Link>
-          </div>
-        </Container>
-      </Jumbotron>
-      <Jumbotron className="jumbo" fluid>
-        <Container>
-          <Row>
-            <Col md={3}>
-              <Image
-                src={Kaye}
-                height="200px"
-                alt="Kaye the artist headshot"
-                roundedCircle
-              />
-            </Col>
-            <Col md={9}>
-              <p>
-                Kaye Powell (aka Simkaye) is an illustrator & comic artist based
-                in Los Angeles, California.
-              </p>
-              <p>
-                Environmental sustainability is a chief priority. All shipping
-                material (labels, outer packaging, print/sticker sleeves, etc.)
-                is made from recycled and sustainable material by Ecoenclose.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </Jumbotron>
-    </main>
+    <Container className='containerMargin' fluid={true}>
+      <Row style={{ marginLeft: 0, marginRight: 0 }}>
+        <Col md={5} className='lists'>
+          my list
+          <Button onClick={addGift}>Add Gift</Button>
+        </Col>
+        <Col md={5} className='lists'>
+          others list
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

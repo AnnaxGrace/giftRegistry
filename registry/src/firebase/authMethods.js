@@ -3,7 +3,7 @@ import { giftsCollection, usersCollection } from "./firebase";
 
 //This file connects with provider/AuthProvider
 export const authMethods = {
-  signup: (email, password, userName, setErrors, setCurrentUserType) => {
+  signup: (email, password, userName, setErrors, setCurrentUserUID) => {
     firebase
       .auth() 
       .createUserWithEmailAndPassword(email, password)
@@ -31,7 +31,7 @@ export const authMethods = {
               .get()
               .then((snapshot) => {
                 const data = snapshot.data();
-                setCurrentUserType(data.type);
+                setCurrentUserUID(currentUID);
               });
           }
         });
@@ -40,7 +40,7 @@ export const authMethods = {
         setErrors((prev) => [...prev, err.message]);
       });
   },
-  login: (email, password, setErrors, setCurrentUserType) => {
+  login: (email, password, setErrors, setCurrentUserUID) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -54,7 +54,7 @@ export const authMethods = {
               .get()
               .then((snapshot) => {
                 const data = snapshot.data();
-                setCurrentUserType(data.type);
+                setCurrentUserUID(currentUID);
               });
           }
         });

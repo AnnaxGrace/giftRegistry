@@ -9,18 +9,18 @@ export const firebaseAuth = React.createContext();
 const AuthProvider = (props) => {
   const [inputs, setInputs] = useState({ email: "", password: "", userName: "" });
   const [errors, setErrors] = useState([]);
-  const [currentUserType, setCurrentUserType] = useState(null);
+  const [currentUserUID, setCurrentUserUID] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const currentUID = user.uid;
+      setCurrentUserUID(currentUID)
       usersCollection
         .doc(currentUID)
         .get()
         .then((snapshot) => {
           const data = snapshot.data();
-          // setCurrentUserType(data.type)
           setLoggedIn(true);
         });
     }
@@ -39,7 +39,7 @@ const AuthProvider = (props) => {
    * Signs up the user and then calls the function to clear forms
    */
   const handleSignup = () => {
-    authMethods.signup(inputs.email, inputs.password, inputs.userName, setErrors, setCurrentUserType);
+    authMethods.signup(inputs.email, inputs.password, inputs.userName, setErrors, setCurrentUserUID);
     clearForms();
   };
  
@@ -47,7 +47,7 @@ const AuthProvider = (props) => {
    * Signs out the user and sets the user type to null 
    */
   const handleSignout = () => {
-    setCurrentUserType(null);
+    setCurrentUserUID(null);
     authMethods.signout(setLoggedIn, setErrors);
   };
 
@@ -55,7 +55,7 @@ const AuthProvider = (props) => {
    * Logs in and calls the function to clear forms
    */
   const handleLogIn = () => {
-    authMethods.login(inputs.email, inputs.password, setErrors, setCurrentUserType);
+    authMethods.login(inputs.email, inputs.password, setErrors, setCurrentUserUID);
     clearForms();
   };
   return (
@@ -68,7 +68,7 @@ const AuthProvider = (props) => {
         handleLogIn,
         handleSignout,
         loggedIn,
-        currentUserType,
+        currentUserUID,
       }}
     >
       {props.children}
