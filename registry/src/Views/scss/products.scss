@@ -1,0 +1,252 @@
+@import "../../theme/colors";
+
+// AsideProductSearch.js
+aside {
+  border-right: gray solid 2px;
+  margin-top: 30px;
+  margin-left: 20px;
+
+  .accordion {
+    background-color: white;
+  }
+
+  section {
+    margin-bottom: 150px;
+
+    p {
+      margin-bottom: 10px;
+    }
+
+
+    h3 {
+      font-size: 15px;
+    }
+
+    //price
+    h3:first-of-type {
+      margin-bottom: 9px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    h4:nth-of-type(2) {
+      margin-top: 30px;
+    }
+
+    .category-btn {
+      background-color: white;
+      color: $secondary-color;
+      border-color: white;
+      outline: none;
+    }
+
+    .category-btn:hover {
+      background-color: white;
+      color: $secondary-color;
+      border-color: white;
+      border-left: 4px solid $primary-color;
+    }
+
+    .category-btn:active {
+      background-color: white !important;
+      border-color: white !important;
+      border-left: 4px solid $primary-color !important;
+    }
+
+    .category-btn:focus {
+      background-color: white;
+      color: $secondary-color;
+      border-color: white;
+      border-left: 4px solid $primary-color;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    #filter-btn {
+      background-color: $primary-color;
+      color: white;
+      border-color: white;
+      margin-top: 5px;
+    }
+
+    #filter-btn:hover {
+      border-color: $secondary-color;
+      outline: none;
+    }
+
+    #filter-btn:active {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      outline: none;
+    }
+  }
+}
+// *******************
+
+// ProductForms.js
+.item-col {
+  background-color: $background-pink-color;
+  margin-top: 30px;
+}
+
+form {
+  margin: 10px 0px;
+  padding: 20px 0px;
+
+  .search-by {
+    margin-right: 15px;
+    color: black;
+  }
+
+  .search-by-group {
+    margin-top: 5px;
+  }
+
+  .form-group-padding {
+    padding-left: 16px;
+  }
+
+  #search-btn {
+    background-color: $secondary-color;
+    color: white;
+    border-color: $secondary-color;
+    margin-top: 30px;
+    height: 2.5em;
+  }
+
+  #search-btn:hover {
+    background-color: $secondary-color;
+    color: white;
+    border-color: $primary-color;
+  }
+
+  #search-btn:active {
+    background-color: $secondary-color;
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+// ******************
+
+#product-container {
+  margin: 10px;
+  width: 100%;
+
+  .product-row {
+    justify-content: left;
+  }
+}
+
+main {
+
+  section:hover {
+    box-shadow: 0 4px 8px 0 $secondary-color, 0 6px 20px 0 $secondary-color;
+  }
+  
+  section {
+    width: 250px;
+    text-align: center;
+    margin: 1em;
+    margin-left: 2.5em;
+    padding: 10px 5px;
+    background-color: white;
+
+    button {
+      width: 100%;
+      background-color: white;
+      border: none;
+    }
+
+    img {
+      height: 10em;
+      margin: 5px auto;
+    }
+
+    .product-row {
+      align-items: center;
+    }
+
+    p {
+      margin: 10px;
+    }
+  }
+}
+
+#product-modal {
+  font-family: "Comfortaa", cursive;
+
+  #modal-header {
+    background-color: $secondary-color;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: $primary-color;
+    font-weight: 700;
+  }
+
+  .item-info {
+    text-align: right;
+
+    .quantity-form {
+      width: 60px;
+      margin-left: 140px;
+    }
+
+    #add-btn {
+      background-color: $secondary-color;
+      color: white;
+      border-color: $secondary-color;
+      margin-top: 30px;
+      height: 2.5em;
+    }
+
+    #add-btn:hover {
+      background-color: $secondary-color;
+      color: white;
+      border-color: $primary-color;
+    }
+
+    #add-btn:active {
+      background-color: $secondary-color;
+      border-color: $primary-color;
+      outline: none;
+    }
+  }
+
+  .tags {
+    margin: 0;
+    padding-left: 10px;
+    color: $primary-color;
+  }
+}
+
+
+/* Mobile */
+@media screen and (max-width: 550px) {
+  #product-modal {
+    img {
+      height: 200px;
+    }
+  }
+
+  #add-btn {
+    height: 60px !important;
+  }
+
+  .quantity-form {
+    margin-left: 50px !important;
+  }
+
+  .product-row {
+    justify-content: center !important;
+  }
+
+  aside {
+    border: none !important;
+  }
+
+
+}

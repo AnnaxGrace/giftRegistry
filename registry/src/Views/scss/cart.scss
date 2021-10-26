@@ -1,0 +1,84 @@
+@import "../../theme/colors";
+
+
+//No items in cart
+.empty-cart {
+    text-align: center;
+    margin: 300px 0;
+    font-size: 3em;
+
+    a {
+        color: $primary-color;
+    }
+}
+
+p {
+  margin-left: 15px;
+}
+
+// CartProductRow.js
+
+.cart-item {
+  width: 75%;
+  box-shadow: 0 4px 8px 0 $secondary-color, 0 6px 20px 0 $secondary-color;
+  text-align: left;
+  margin: 2.5em;
+  background-color: white;
+
+  .item-p {
+    margin-top: 60px;
+  }
+
+  #delete-from-cart-btn {
+    color: $primary-color;
+    background-color: white;
+    border: none;
+    margin-top: 30px;
+  }
+
+  img {
+    margin: 30px;
+  }
+
+  .item-total {
+    text-align: right;
+    margin-right: 20px;
+  }
+}
+
+// ******************
+
+
+// OrderSummary.js
+.order-summary {
+  border: $primary-color solid 10px;
+  margin: 60px;
+  text-align: right;
+  padding: 30px;
+  border-radius: 5px;
+  position: sticky;
+  top: 60px;
+
+  h2 {
+    text-align: left;
+  }
+
+  #checkout-btn {
+    background-color: $secondary-color;
+    color: white;
+    border-color: white;
+    margin-top: 5px;
+  }
+
+  #checkout-btn:hover {
+    border-color: $primary-color;
+    outline: none;
+  }
+
+  #checkout-btn:active {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+    outline: none;
+  }
+}
+// ***************

@@ -1,0 +1,185 @@
+@import "../../theme/colors";
+
+header {
+  background-color: $primary-color;
+  text-align: right;
+
+  .accordion {
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
+
+    .user-row {
+      justify-content: flex-end;
+
+      a[href="#/cart"] {
+        color: white;
+      }
+
+      #signout-btn {
+        background-color: $secondary-color;
+        height: 40px;
+        border-color: $primary-color;
+        margin-top: 10px;
+      }
+
+      #signout-btn:hover {
+        background-color: $secondary-color;
+        color: white;
+        border-color: $primary-color;
+      }
+
+      #signout-btn:active {
+        background-color: $secondary-color;
+        border-color: $primary-color;
+        outline: none;
+      }
+
+      #accordion-toggle {
+        color: white;
+        padding: 0;
+
+        img {
+          margin: 10px;
+          border: 2px $secondary-color solid;
+          border-radius: 22px;
+        }
+      }
+    }
+
+    #accordion-toggle:focus {
+      color: white;
+      box-shadow: 0 0 0.2rem $primary-color;
+    }
+  }
+}
+
+// AuthForms.js
+header {
+  form {
+    text-align: left;
+    .spacing {
+      margin: 10px;
+    }
+    .btn-div {
+      margin: 0px 10px;
+      margin-right: 60px;
+    }
+
+    .margin-top {
+      margin-top: 43px;
+    }
+
+    button[type="submit"] {
+      background-color: $primary-color;
+      height: 40px;
+      border-color: $primary-color;
+    }
+
+    button[type="submit"]:hover {
+      background-color: $primary-color;
+      color: white;
+      border-color: $secondary-color;
+    }
+
+    button[type="submit"]:active {
+      background-color: $primary-color !important;
+      border-color: $secondary-color;
+      outline: none;
+    }
+
+    button[type="submit"]:focus {
+      color: white;
+      background-color: $primary-color;
+    }
+
+    button[type="button"] {
+      background-color: white;
+      border: none;
+      height: 40px;
+      font-size: 20px;
+      color: $secondary-color;
+      padding-bottom: 60px;
+    }
+  }
+}
+// **********
+
+
+nav {
+  background-color: $secondary-color;
+  border-bottom: 2px solid black;
+  height: 13em;
+
+  img {
+    position: absolute;
+    top: -150px;
+  }
+
+  #logo,
+  #hide {
+    font-weight: 700;
+    font-size: 2.5em;
+    margin-right: 60px;
+    margin-left: 15px;
+  }
+
+  #logo {
+    color: white;
+    text-shadow: 0 0 1px $primary-color;
+    transform: rotate(-3deg);
+  }
+
+  #hide {
+    color: $secondary-color;
+  }
+
+  .navbar-links {
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.7em;
+    margin-right: 25px;
+  }
+}
+
+
+footer {
+  background-color: $primary-color;
+
+  h2 {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      text-decoration: none;
+
+      i {
+        color: white;
+      }
+    }
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 550px) {
+  #logo,
+  #hide {
+    font-size: 30px !important ;
+  }
+
+  .navbar-links {
+    margin-right: 10px !important;
+  }
+}

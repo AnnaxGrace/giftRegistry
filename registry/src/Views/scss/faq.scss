@@ -1,0 +1,35 @@
+
+.faq-div {
+    text-align: center;
+
+    img {
+        height: 55em;
+        margin-top: 15px;
+    }
+}
+
+
+/* Mobile */
+@media screen and (max-width: 890px) {
+    .faq-div {
+        img {
+            height: 45em;
+        }
+    }
+  }
+
+  @media screen and (max-width: 714px) {
+    .faq-div {
+        img {
+            height: 35em;
+        }
+    }
+  }
+
+  @media screen and (max-width: 570px) {
+    .faq-div {
+        img {
+            height: 23em;
+        }
+    }
+  }

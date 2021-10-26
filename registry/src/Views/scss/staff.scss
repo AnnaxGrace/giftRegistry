@@ -1,0 +1,105 @@
+@import "../../theme/colors";
+
+input {
+  margin: 5px;
+}
+
+#update-alert {
+  position: sticky;
+  top: 90%;
+  z-index: 1;
+}
+
+
+// Aside Section
+aside {
+  border-right: gray solid 2px;
+  margin: 30px 20px;
+  position: sticky;
+  top: 15px;
+
+  div[role="alert"] {
+    margin-top: 10px;
+  }
+
+  section {
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 15px;
+    }
+
+    form {
+      margin: 5px;
+      margin-right: 20px;
+    }
+
+    #delete-item-btn,
+    #add-item-btn {
+      background-color: $primary-color;
+      color: white;
+      border-color: white;
+      margin-top: 5px;
+    }
+
+    #delete-item-btn:hover,
+    #add-item-btn:hover {
+      border-color: $secondary-color;
+      outline: none;
+    }
+
+    #delete-item-btn:active,
+    #add-item-btn:active {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      outline: none;
+    }
+
+    #delete-item-btn:focus,
+    #add-item-btn:focus {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
+// *******************
+
+// StaffInventoryItems.js
+section {
+  .name-sku-row {
+    margin-top: 20px;
+  }
+
+  form {
+    margin: 0px 25px;
+
+    label {
+      font-size: 12px;
+    }
+
+    .update-item-btn {
+      background-color: $primary-color;
+      color: white;
+      border-color: white;
+      margin-top: 35px;
+      margin-left: 10px;
+    }
+
+    .update-item-btn:hover {
+      border-color: $secondary-color;
+      background-color: $primary-color;
+      outline: none;
+    }
+
+    .update-item-btn:active {
+      background-color: $primary-color !important;
+      border-color: $primary-color;
+      outline: none;
+    }
+
+    .update-item-btn:focus {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}

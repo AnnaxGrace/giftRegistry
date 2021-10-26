@@ -1,0 +1,61 @@
+@import "../../theme/colors";
+
+main {
+  background-color: $background-pink-color;
+
+  .jumbo {
+    background-color: $background-pink-color;
+  }
+
+  // Video section
+  .animate__animated.animate__fadeIn {
+    --animate-duration: 4s;
+  }
+
+  video {
+    border-radius: 5px;
+    border: 20px solid white;
+  }
+
+  // ******************
+
+
+  // Shop redirect section
+  .shop-image {
+    position: relative;
+  }
+
+  #shop-btn {
+    position: absolute;
+    right: 25%;
+    top: 30%;
+    height: 35%;
+    width: 50%;
+    background-color: $secondary-color;
+    border-radius: 5px;
+    border: solid 5px $secondary-color;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  #shop-btn:hover {
+    border: solid 5px $primary-color;
+  }
+
+  // *****************
+
+  // About section
+  p {
+    margin-top: 30px;
+  }
+
+  // *******************
+}
+
+/* Mobile */
+@media screen and (max-width: 550px) {
+  #shop-btn {
+    font-size: 20px !important;
+  }
+}
