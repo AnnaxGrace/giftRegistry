@@ -7,7 +7,7 @@ export const firebaseAuth = React.createContext();
 
 //This is our provider that allows the rest of our code to know if the user is logged in, and the type of user, and to be able to login/signup/signout in different files
 const AuthProvider = (props) => {
-  const [inputs, setInputs] = useState({ email: "", password: "" });
+  const [inputs, setInputs] = useState({ email: "", password: "", userName: "" });
   const [errors, setErrors] = useState([]);
   const [currentUserType, setCurrentUserType] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -20,7 +20,7 @@ const AuthProvider = (props) => {
         .get()
         .then((snapshot) => {
           const data = snapshot.data();
-          setCurrentUserType(data.type)
+          // setCurrentUserType(data.type)
           setLoggedIn(true);
         });
     }
@@ -30,7 +30,7 @@ const AuthProvider = (props) => {
    * Clears both the input forms and the errors given
    */
   const clearForms = () => {
-    setInputs({ email: "", password: "" });
+    setInputs({ email: "", password: "", userName: "" });
     setErrors("");
   };
 
@@ -39,7 +39,7 @@ const AuthProvider = (props) => {
    * Signs up the user and then calls the function to clear forms
    */
   const handleSignup = () => {
-    authMethods.signup(inputs.email, inputs.password, setErrors, setCurrentUserType);
+    authMethods.signup(inputs.email, inputs.password, inputs.userName, setErrors, setCurrentUserType);
     clearForms();
   };
  

@@ -18,18 +18,6 @@ function LandingPage() {
   return (
     <main>
       <Jumbotron className="jumbo" fluid>
-        <Container
-        className="animate__animated animate__fadeIn ">
-          <video
-            width="100%"
-            src="https://files.catbox.moe/2z9fp7.mp4"
-            autoPlay
-            loop
-            muted
-          ></video>
-        </Container>
-      </Jumbotron>
-      <Jumbotron className="jumbo" fluid>
         <Container>
           <div className="shop-image">
             <img

@@ -2,22 +2,21 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCb-ntPyOHR-YAkSMexO_BZ0LVShVeE0Fw",
-    authDomain: "stickersbysimkaye.firebaseapp.com",
-    projectId: "stickersbysimkaye",
-    storageBucket: "stickersbysimkaye.appspot.com",
-    messagingSenderId: "894493773985",
-    appId: "1:894493773985:web:566ac9976c4f3ef5a760e0",
-    measurementId: "G-DFJZF5CJ5L"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyAS0MEPVqGh2WHDI0NnZ_reYLoQFadJwro",
+  authDomain: "giftregistry-67cf5.firebaseapp.com",
+  projectId: "giftregistry-67cf5",
+  storageBucket: "giftregistry-67cf5.appspot.com",
+  messagingSenderId: "432757216623",
+  appId: "1:432757216623:web:c675babf6dd0fe76b2049a"
+};
   
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
   
   firebase.auth();
-  const inventoryCollection = firebase.firestore().collection("inventory");
+  const giftsCollection = firebase.firestore().collection('gifts');
   const usersCollection = firebase.firestore().collection('users');
   
   
@@ -25,5 +24,5 @@ import "firebase/auth";
   export {
     firebase,
     usersCollection,
-    inventoryCollection
+    giftsCollection
   };

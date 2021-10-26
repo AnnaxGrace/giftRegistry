@@ -1,19 +1,25 @@
 import firebase from "firebase/app";
-import { usersCollection } from "./firebase";
+import { giftsCollection, usersCollection } from "./firebase";
 
 //This file connects with provider/AuthProvider
 export const authMethods = {
-  signup: (email, password, setErrors, setCurrentUserType) => {
+  signup: (email, password, userName, setErrors, setCurrentUserType) => {
     firebase
       .auth() 
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        // Creates a corresponding firestore user with the authentication user uid
+        console.log('here?')
         const { user } = res;
+        //Creates a giftList with the user uid
+        const newCollection = giftsCollection.doc(user.uid)
+        newCollection.set({
+          uid: user.uid
+        })
+        // Creates a corresponding firestore user with the authentication user uid
         const userProfile = {
           uid: user.uid,
-          type: "customer",
-          inventory: [],
+          username: userName,
+          members: [],
         };
         usersCollection.doc(user.uid).set(userProfile);
         //Grabs the user created and sets the current type with 'customer'
