@@ -9,9 +9,12 @@ import Row from "react-bootstrap/Row";
 
 import "./landing.css";
 import Button from "react-bootstrap/Button";
+import ListItem from "../Components/Gift/ListItem";
 
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
+  const [items, setItems] = useState(null);
+  const [userId, setUserId] = useState(currentUserUID)
 
   const getUserList = async () => {
     giftsCollection.where("uid", "==", currentUserUID)
@@ -20,6 +23,7 @@ function LandingPage() {
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           console.log(doc.id, " => ", doc.data());
+          setItems(doc.data())
         });
       })
       .catch((error) => {
@@ -34,7 +38,7 @@ function LandingPage() {
       item: {
         itemName: 'party',
         link: 'its a link',
-        privateToOver: false,
+        privateToOwner: false,
         purchased: false
       }
     });
@@ -54,16 +58,37 @@ function LandingPage() {
   //   }
   // };
 
+  // const populateUser = () => {
+  //   if (currentUserUID) {
+  //     return currentUserUID
+  //   } else {
+  //     populateUser()
+  //   }
+  // }
+
   useEffect(() => {
     console.log(currentUserUID)
+    // populateUser()
+    // setTimeout(() => { getUserList() }, 9000);
     getUserList()
-  }, []);
+  }, [currentUserUID]);
 
   return (
     <Container className='containerMargin' fluid={true}>
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
         <Col md={5} className='lists'>
-          my list
+          {console.log(items)}
+          {items !== null && Object.keys(items).map((item, index) => (
+            <>
+              {typeof items[item] !== 'string' &&
+                <ul id={index}>
+                  <ListItem
+                    item={items[item]}
+                  />
+                </ul>}
+            </>
+          ))}
+
           <Button onClick={addGift}>Add Gift</Button>
         </Col>
         <Col md={5} className='lists'>
