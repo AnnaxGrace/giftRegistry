@@ -23,11 +23,11 @@ function AddGift({ giftInputs, handleChange, ownerAddGift }) {
                 <Form.Control
                     value={giftInputs.link}
                     name="link"
-                    placeholder="Not necessary"
+                    placeholder="optional"
                     onChange={handleChange}
                 />
             </Form.Group>
-            <Button onClick={ownerAddGift} variant="primary" type="submit">
+            <Button onClick={ownerAddGift} variant="dark" type="submit">
                 Submit
             </Button>
         </Form>

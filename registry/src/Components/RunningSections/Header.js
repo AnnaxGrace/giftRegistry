@@ -57,11 +57,10 @@ function Header() {
                 variant="link"
                 eventKey="0"
               >
-                <Image src={Avatar} height="40px" alt="Nervous dog face" />
                 {!loggedIn && "Sign Up/Log-in"}
               </Accordion.Toggle>
               {loggedIn && (
-                <Button id="signout-btn" onClick={handleSignout}>
+                <Button variant="link" id="signout-btn" onClick={handleSignout}>
                   sign out
                 </Button>
               )}

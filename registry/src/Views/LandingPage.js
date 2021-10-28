@@ -15,8 +15,9 @@ import AddGift from "../Components/Gift/AddGift";
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
   const [items, setItems] = useState(null);
-  const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '' })
-  const [userId, setUserId] = useState(currentUserUID)
+  const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '' });
+  const [userId, setUserId] = useState(currentUserUID);
+  const [addingItem, setAddingItem] = useState(false)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,18 +46,20 @@ function LandingPage() {
     const randomNumbers = uuidv4();
     const itemIdentifier = `item${randomNumbers}`
     console.log(items)
-    const addObject = {...items.items, [itemIdentifier]: {
-      itemName: giftInputs.itemName,
-      link: giftInputs.link,
-      privateToOwner: false,
-      purchased: false 
-    }}
+    const addObject = {
+      ...items.items, [itemIdentifier]: {
+        itemName: giftInputs.itemName,
+        link: giftInputs.link,
+        privateToOwner: false,
+        purchased: false
+      }
+    }
     setItems((prev) => ({
       ...prev, [itemIdentifier]: {
         itemName: giftInputs.itemName,
         link: giftInputs.link,
         privateToOwner: false,
-        purchased: false 
+        purchased: false
       }
     }));
     console.log(addObject)
@@ -64,6 +67,7 @@ function LandingPage() {
     newItem.set({
       items: addObject
     });
+    setAddingItem(false)
   }
 
   // const getFirebase = async () => {
@@ -100,8 +104,7 @@ function LandingPage() {
     <Container className='containerMargin' fluid={true}>
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
         <Col md={5} className='lists'>
-          {console.log(items)}
-          {items !== null && console.log(items.items)}
+          <h2>My List</h2>
           {items !== null && Object.keys(items.items).map((item, index) => (
             <>
               {typeof items.items[item] !== 'string' &&
@@ -112,16 +115,20 @@ function LandingPage() {
                 </ul>}
             </>
           ))}
-
-          {/* <Button onClick={addGift}>Add Gift</Button> */}
-          <AddGift
-            giftInputs={giftInputs}
-            handleChange={handleChange}
-            ownerAddGift={ownerAddGift}
-          />
+          <Row style={{ marginLeft: 0, marginRight: 0 }}>
+            <h3>Add an item</h3>
+            {addingItem ? <i onClick={() => { setAddingItem(false) }} style={{ marginLeft: 10, marginTop: 10 }} class="fas fa-minus-square"></i> :
+            <i onClick={() => { setAddingItem(true) }} style={{ marginLeft: 10, marginTop: 10 }} className="fas fa-plus-square"></i>}
+          </Row>
+          {addingItem &&
+            <AddGift
+              giftInputs={giftInputs}
+              handleChange={handleChange}
+              ownerAddGift={ownerAddGift}
+            />}
         </Col>
         <Col md={5} className='lists'>
-          others list
+          <h2>Friends and Family</h2>
         </Col>
       </Row>
     </Container>
