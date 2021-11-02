@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { firebaseAuth } from "../provider/AuthProvider";
-import { giftsCollection } from "../firebase/firebase";
+import { giftsCollection, usersCollection } from "../firebase/firebase";
 
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -11,18 +11,42 @@ import Row from "react-bootstrap/Row";
 import "./landing.css";
 import ListItem from "../Components/Gift/ListItem";
 import AddGift from "../Components/Gift/AddGift";
+import AddFF from "../Components/FriendsAndFamily/AddFF";
 
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState({items: null});
   const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '' });
+  const [FFUsernameInput, setFFUsernameInput] = useState('')
   const [userId, setUserId] = useState(currentUserUID);
-  const [addingItem, setAddingItem] = useState(false)
+  const [addingItem, setAddingItem] = useState(false);
+  const [FF, setFF] = useState([]);
+  const [user, setUser] = useState()
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setGiftInputs((prev) => ({ ...prev, [name]: value }));
   };
+
+  const handleFFChange = (event) => {
+    const { name, value } = event.target;
+    setFFUsernameInput(value);
+  };
+
+  const getFF = () => {
+    usersCollection.where("uid", "==", currentUserUID)
+    .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data().members)
+          setUser(doc.data())
+          setFF(doc.data().members)
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  }
 
   const getUserList = async () => {
     // await currentUserUID !== null;
@@ -31,9 +55,8 @@ function LandingPage() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log('here?')
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+          console.log(doc.data())
           setItems(doc.data())
         });
       })
@@ -45,7 +68,6 @@ function LandingPage() {
   const ownerAddGift = () => {
     const randomNumbers = uuidv4();
     const itemIdentifier = `item${randomNumbers}`
-    console.log(items)
     const addObject = {
       ...items.items, [itemIdentifier]: {
         itemName: giftInputs.itemName,
@@ -62,7 +84,6 @@ function LandingPage() {
         purchased: false
       }
     }));
-    console.log(addObject)
     const newItem = giftsCollection.doc(currentUserUID);
     newItem.set({
       items: addObject
@@ -70,34 +91,38 @@ function LandingPage() {
     setAddingItem(false)
   }
 
-  // const getFirebase = async () => {
-  //   const response = await inventoryCollection.get();
-  //   try {
-  //     const inventoryData = response.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-  //     setItems(inventoryData);
-  //     return inventoryData;
-  //   } catch (error) {
-  //     return error;
-  //   }
-  // };
+  const addFF = () => {
+    console.log(FFUsernameInput);
+    usersCollection.where("username", "==", FFUsernameInput)
+    .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data());
+          const addNewMember = FF
+          addNewMember.push(doc.data().uid)
+          const addNewFF = {
+            ...user, members: addNewMember
+          }
+          setFF(addNewMember)
+          setUser(addNewFF);
+          const newFF = usersCollection.doc(currentUserUID);
+          newFF.set(addNewFF);
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
 
-  // const populateUser = () => {
-  //   if (currentUserUID) {
-  //     return currentUserUID
-  //   } else {
-  //     populateUser()
-  //   }
-  // }
-
+  }
+  
   useEffect(() => {
     console.log(currentUserUID)
+    setItems({items: {uid: currentUserUID}})
     setUserId(currentUserUID)
     // populateUser()
     // setTimeout(() => { getUserList() }, 9000);
-    getUserList()
+    getUserList();
+    getFF()
   }, [currentUserUID, userId]);
 
   return (
@@ -105,8 +130,10 @@ function LandingPage() {
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
         <Col md={5} className='lists'>
           <h2>My List</h2>
-          {items !== null && Object.keys(items.items).map((item, index) => (
+          {items.items !== null && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
             <>
+            {console.log(items.items)}
+            {console.log(items.items[item])}
               {typeof items.items[item] !== 'string' &&
                 <ul id={index}>
                   <ListItem
@@ -129,6 +156,11 @@ function LandingPage() {
         </Col>
         <Col md={5} className='lists'>
           <h2>Friends and Family</h2>
+          <AddFF 
+            FFUsernameInput={FFUsernameInput}
+            handleFFChange={handleFFChange}
+            addFF={addFF}
+          />
         </Col>
       </Row>
     </Container>

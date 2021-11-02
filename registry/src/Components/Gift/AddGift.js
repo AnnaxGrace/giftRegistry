@@ -27,7 +27,7 @@ function AddGift({ giftInputs, handleChange, ownerAddGift }) {
                     onChange={handleChange}
                 />
             </Form.Group>
-            <Button onClick={ownerAddGift} variant="dark" type="submit">
+            <Button onClick={ownerAddGift} variant="dark">
                 Submit
             </Button>
         </Form>
