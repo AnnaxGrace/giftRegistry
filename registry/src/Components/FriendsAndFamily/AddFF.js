@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 
 
 function AddFF({ FFUsernameInput, handleFFChange, addFF, FF }) {
-    console.log(FF)
+
     return (
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">

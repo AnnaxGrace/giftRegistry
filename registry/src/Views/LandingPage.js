@@ -12,10 +12,11 @@ import "./landing.css";
 import ListItem from "../Components/Gift/ListItem";
 import AddGift from "../Components/Gift/AddGift";
 import AddFF from "../Components/FriendsAndFamily/AddFF";
+import TabWrapper from "../Components/FriendsAndFamily/TabWrapper";
 
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
-  const [items, setItems] = useState({items: null});
+  const [items, setItems] = useState({ items: null });
   const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '' });
   const [FFUsernameInput, setFFUsernameInput] = useState('')
   const [userId, setUserId] = useState(currentUserUID);
@@ -35,10 +36,9 @@ function LandingPage() {
 
   const getFF = () => {
     usersCollection.where("uid", "==", currentUserUID)
-    .get()
+      .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(doc.data().members)
           setUser(doc.data())
           setFF(doc.data().members)
         });
@@ -50,13 +50,12 @@ function LandingPage() {
 
   const getUserList = async () => {
     // await currentUserUID !== null;
-    console.log(currentUserUID)
     giftsCollection.where("items.uid", "==", currentUserUID)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-          console.log(doc.data())
+          // console.log(doc.data())
           setItems(doc.data())
         });
       })
@@ -94,14 +93,18 @@ function LandingPage() {
   const addFF = () => {
     console.log(FFUsernameInput);
     usersCollection.where("username", "==", FFUsernameInput)
-    .get()
+      .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           console.log(doc.data());
-          const addNewMember = FF
-          addNewMember.push(doc.data().uid)
+          const addNewMember = FF;
+          addNewMember.push(doc.data());
+          console.log(user)
+          console.log(addNewMember)
           const addNewFF = {
-            ...user, members: addNewMember
+            members: addNewMember,
+            uid: user.uid,
+            username: user.username
           }
           setFF(addNewMember)
           setUser(addNewFF);
@@ -114,10 +117,9 @@ function LandingPage() {
       });
 
   }
-  
+
   useEffect(() => {
-    console.log(currentUserUID)
-    setItems({items: {uid: currentUserUID}})
+    setItems({ items: { uid: currentUserUID } })
     setUserId(currentUserUID)
     // populateUser()
     // setTimeout(() => { getUserList() }, 9000);
@@ -132,8 +134,6 @@ function LandingPage() {
           <h2>My List</h2>
           {items.items !== null && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
             <>
-            {console.log(items.items)}
-            {console.log(items.items[item])}
               {typeof items.items[item] !== 'string' &&
                 <ul id={index}>
                   <ListItem
@@ -145,7 +145,7 @@ function LandingPage() {
           <Row style={{ marginLeft: 0, marginRight: 0 }}>
             <h3>Add an item</h3>
             {addingItem ? <i onClick={() => { setAddingItem(false) }} style={{ marginLeft: 10, marginTop: 10 }} class="fas fa-minus-square"></i> :
-            <i onClick={() => { setAddingItem(true) }} style={{ marginLeft: 10, marginTop: 10 }} className="fas fa-plus-square"></i>}
+              <i onClick={() => { setAddingItem(true) }} style={{ marginLeft: 10, marginTop: 10 }} className="fas fa-plus-square"></i>}
           </Row>
           {addingItem &&
             <AddGift
@@ -156,10 +156,11 @@ function LandingPage() {
         </Col>
         <Col md={5} className='lists'>
           <h2>Friends and Family</h2>
-          <AddFF 
+          <TabWrapper
             FFUsernameInput={FFUsernameInput}
             handleFFChange={handleFFChange}
             addFF={addFF}
+            FF={FF}
           />
         </Col>
       </Row>

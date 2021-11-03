@@ -8,7 +8,6 @@ export const authMethods = {
       .auth() 
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log('here?')
         const { user } = res;
         //Creates a giftList with the user uid
         const newCollection = giftsCollection.doc(user.uid)
