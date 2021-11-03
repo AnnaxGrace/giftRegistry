@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { firebaseAuth } from "../provider/AuthProvider";
 import { giftsCollection, usersCollection } from "../firebase/firebase";
-
+// import { getUserList } from '../utils/GlobalFunctions'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -110,21 +110,25 @@ function LandingPage() {
           setUser(addNewFF);
           const newFF = usersCollection.doc(currentUserUID);
           newFF.set(addNewFF);
+          setFFUsernameInput('');
         });
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
-
   }
 
   useEffect(() => {
-    setItems({ items: { uid: currentUserUID } })
-    setUserId(currentUserUID)
-    // populateUser()
-    // setTimeout(() => { getUserList() }, 9000);
-    getUserList();
-    getFF()
+    if (currentUserUID !== null) {
+      setItems({ items: { uid: currentUserUID } })
+      setUserId(currentUserUID)
+      // populateUser()
+      // setTimeout(() => { getUserList() }, 9000);
+      // console.log(getUserList(currentUserUID))
+      // setItems(getUserList(currentUserUID));
+      setItems(getUserList())
+      getFF()
+    }
   }, [currentUserUID, userId]);
 
   return (
@@ -132,7 +136,8 @@ function LandingPage() {
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
         <Col md={5} className='lists'>
           <h2>My List</h2>
-          {items.items !== null && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
+          {console.log(items.items)}
+          {items.items && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
             <>
               {typeof items.items[item] !== 'string' &&
                 <ul id={index}>
