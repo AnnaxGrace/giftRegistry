@@ -8,7 +8,7 @@ import './ff.css'
 import FFListWrapper from "./FFListWrapper";
 
 
-function TabWrapper({ FFUsernameInput, handleFFChange, addFF, FF }) {
+function TabWrapper({ FFUsernameInput, handleFFChange, addFF, FF, giftInputs, handleChange, ownerAddGift, memberAddGift }) {
 
     // console.log(FF)
 
@@ -18,6 +18,11 @@ function TabWrapper({ FFUsernameInput, handleFFChange, addFF, FF }) {
                 <Tab eventKey={member.username} title={member.username}>
                     <FFListWrapper
                         uid={member.uid}
+                        username={member.username}
+                        giftInputs={giftInputs}
+                        handleChange={handleChange}
+                        ownerAddGift={ownerAddGift}
+                        memberAddGift={memberAddGift}
                     />
                 </Tab>
             ))}

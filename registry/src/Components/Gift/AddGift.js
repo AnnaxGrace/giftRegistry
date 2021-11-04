@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 
-function AddGift({ giftInputs, handleChange, ownerAddGift }) {
+function AddGift({ giftInputs, handleChange, ownerAddGift, whoseList }) {
 
     return (
         <Form>
@@ -27,6 +27,7 @@ function AddGift({ giftInputs, handleChange, ownerAddGift }) {
                     onChange={handleChange}
                 />
             </Form.Group>
+            {whoseList === 'member' && 'checks'}
             <Button onClick={ownerAddGift} variant="dark">
                 Submit
             </Button>

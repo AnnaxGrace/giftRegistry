@@ -17,7 +17,7 @@ import TabWrapper from "../Components/FriendsAndFamily/TabWrapper";
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
   const [items, setItems] = useState({ items: null });
-  const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '' });
+  const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '', privateToOwner: false, purchase: false });
   const [FFUsernameInput, setFFUsernameInput] = useState('')
   const [userId, setUserId] = useState(currentUserUID);
   const [addingItem, setAddingItem] = useState(false);
@@ -90,6 +90,32 @@ function LandingPage() {
     setAddingItem(false)
   }
 
+  const memberAddGift = (memberUID) => {
+    const randomNumbers = uuidv4();
+    const itemIdentifier = `item${randomNumbers}`
+    const addObject = {
+      ...items.items, [itemIdentifier]: {
+        itemName: giftInputs.itemName,
+        link: giftInputs.link,
+        privateToOwner: giftInputs.privateToOwner,
+        purchased: giftInputs.purchased
+      }
+    }
+    setItems((prev) => ({
+      ...prev, [itemIdentifier]: {
+        itemName: giftInputs.itemName,
+        link: giftInputs.link,
+        privateToOwner: giftInputs.privateToOwner,
+        purchased: giftInputs.purchased
+      }
+    }));
+    const newItem = giftsCollection.doc(memberUID);
+    newItem.set({
+      items: addObject
+    });
+    setAddingItem(false)
+  }
+
   const addFF = () => {
     console.log(FFUsernameInput);
     usersCollection.where("username", "==", FFUsernameInput)
@@ -143,6 +169,7 @@ function LandingPage() {
                 <ul id={index}>
                   <ListItem
                     item={items.items[item]}
+                    whoseList='owner'
                   />
                 </ul>}
             </>
@@ -157,6 +184,8 @@ function LandingPage() {
               giftInputs={giftInputs}
               handleChange={handleChange}
               ownerAddGift={ownerAddGift}
+              memberAddGift={memberAddGift}
+              whoseList='owner'
             />}
         </Col>
         <Col md={5} className='lists'>
@@ -166,6 +195,10 @@ function LandingPage() {
             handleFFChange={handleFFChange}
             addFF={addFF}
             FF={FF}
+            giftInputs={giftInputs}
+            handleChange={handleChange}
+            ownerAddGift={ownerAddGift}
+            memberAddGift={memberAddGift}
           />
         </Col>
       </Row>
