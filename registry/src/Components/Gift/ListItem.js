@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 
 
 import Bow from '../../assets/bow.png';
+import './gift.css';
 
 function ListItem({ item, whoseList, username }) {
     const [purchased, setPurchased] = useState(item.purchased)
@@ -18,7 +19,7 @@ function ListItem({ item, whoseList, username }) {
     return (
         <li>
             <Image src={Bow} style={{ height: 50 }} />
-            <a style={{ marginLeft: 20, color: 'white' }} target="_blank" rel="noreferrer" href={item.link}>{item.itemName}</a>
+            <a style={{ marginLeft: 20, color: 'white', fontSize: 35 }} target="_blank" rel="noreferrer" href={item.link}>{item.itemName}</a>
             <p style={{ marginLeft: 70 }}>
                 {whoseList === 'member' &&
                     <>
@@ -27,8 +28,8 @@ function ListItem({ item, whoseList, username }) {
                                 <Form.Check type="checkbox" checked disabled label={`${username} doesn't see this item!`} />
                             </Form.Group>
                         }
-                        <Form.Group className="mb-3" controlId="purchaseCheckbox">
-                            <Form.Check type="checkbox" name='purchased' checked={purchased} onChange={handlePurchaseCheck} label='purchased' />
+                        <Form.Group style={{fontSize: 25 }} className="mb-3" controlId="purchaseCheckbox">
+                            <Form.Check type="checkbox" size="lg" name='purchased' checked={purchased} onChange={handlePurchaseCheck} label='purchased' />
                         </Form.Group>
                     </>
                 }

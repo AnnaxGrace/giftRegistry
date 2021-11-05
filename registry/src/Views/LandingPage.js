@@ -161,7 +161,7 @@ function LandingPage() {
     <Container className='containerMargin' fluid={true}>
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
         <Col md={5} className='lists'>
-          <h2>My List</h2>
+          <h2 style={{fontSize: 45}}>My List</h2>
           {console.log(items.items)}
           {items.items && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
             <>
@@ -175,7 +175,7 @@ function LandingPage() {
             </>
           ))}
           <Row style={{ marginLeft: 0, marginRight: 0 }}>
-            <h3>Add an item</h3>
+            <h3 style={{fontSize: 40}}>Add an item</h3>
             {addingItem ? <i onClick={() => { setAddingItem(false) }} style={{ marginLeft: 10, marginTop: 10 }} class="fas fa-minus-square"></i> :
               <i onClick={() => { setAddingItem(true) }} style={{ marginLeft: 10, marginTop: 10 }} className="fas fa-plus-square"></i>}
           </Row>
@@ -189,7 +189,7 @@ function LandingPage() {
             />}
         </Col>
         <Col md={5} className='lists'>
-          <h2>Friends and Family</h2>
+          <h2 style={{fontSize: 45}}>Friends and Family</h2>
           <TabWrapper
             FFUsernameInput={FFUsernameInput}
             handleFFChange={handleFFChange}

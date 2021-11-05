@@ -47,7 +47,7 @@ function FFListWrapper({ uid, username, giftInputs, handleChange, ownerAddGift, 
                 </>
             ))}
             <Row style={{ marginLeft: 0, marginRight: 0 }}>
-            <h3>Add an item</h3>
+            <h3 style={{fontSize: 40}}>Add an item</h3>
             {addingFFItem ? <i onClick={() => { setAddingFFItem(false) }} style={{ marginLeft: 10, marginTop: 10 }} class="fas fa-minus-square"></i> :
               <i onClick={() => { setAddingFFItem(true) }} style={{ marginLeft: 10, marginTop: 10 }} className="fas fa-plus-square"></i>}
           </Row>
@@ -58,6 +58,7 @@ function FFListWrapper({ uid, username, giftInputs, handleChange, ownerAddGift, 
               ownerAddGift={ownerAddGift}
               memberAddGift={memberAddGift}
               whoseList='member'
+              memberUID={uid}
             />}
         </div>
     );

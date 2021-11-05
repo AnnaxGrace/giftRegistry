@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 function AddFF({ FFUsernameInput, handleFFChange, addFF, FF }) {
 
     return (
-        <Form>
+        <Form style={{fontSize: 30}}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
