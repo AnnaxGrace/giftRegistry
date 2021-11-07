@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/giftRegistry/static/css/main.e6bcf71a.chunk.css",
+    "main.js": "/giftRegistry/static/js/main.6778ff2c.chunk.js",
+    "main.js.map": "/giftRegistry/static/js/main.6778ff2c.chunk.js.map",
+    "runtime-main.js": "/giftRegistry/static/js/runtime-main.0bf70955.js",
+    "runtime-main.js.map": "/giftRegistry/static/js/runtime-main.0bf70955.js.map",
+    "static/css/2.150d169a.chunk.css": "/giftRegistry/static/css/2.150d169a.chunk.css",
+    "static/js/2.10db3f52.chunk.js": "/giftRegistry/static/js/2.10db3f52.chunk.js",
+    "static/js/2.10db3f52.chunk.js.map": "/giftRegistry/static/js/2.10db3f52.chunk.js.map",
+    "static/js/3.0b308e54.chunk.js": "/giftRegistry/static/js/3.0b308e54.chunk.js",
+    "static/js/3.0b308e54.chunk.js.map": "/giftRegistry/static/js/3.0b308e54.chunk.js.map",
+    "index.html": "/giftRegistry/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/giftRegistry/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.e6bcf71a.chunk.css.map": "/giftRegistry/static/css/main.e6bcf71a.chunk.css.map",
+    "static/js/2.10db3f52.chunk.js.LICENSE.txt": "/giftRegistry/static/js/2.10db3f52.chunk.js.LICENSE.txt",
+    "static/media/bow.929bfbf4.png": "/giftRegistry/static/media/bow.929bfbf4.png",
+    "static/media/gus_2_112x112.685fac62.png": "/giftRegistry/static/media/gus_2_112x112.685fac62.png",
+    "static/media/landing.css": "/giftRegistry/static/media/sparkleBackground.44ce1164.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0bf70955.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.10db3f52.chunk.js",
+    "static/css/main.e6bcf71a.chunk.css",
+    "static/js/main.6778ff2c.chunk.js"
+  ]
+}
