@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { giftsCollection } from "../../firebase/firebase";
+
 import Image from 'react-bootstrap/Image';
 import Form from "react-bootstrap/Form";
 
@@ -7,11 +9,33 @@ import Form from "react-bootstrap/Form";
 import Bow from '../../assets/bow.png';
 import './gift.css';
 
-function ListItem({ item, whoseList, username }) {
+function ListItem({ item, whoseList, username, itemIdentifier, memberGiftList }) {
     const [purchased, setPurchased] = useState(item.purchased)
 
     const handlePurchaseCheck = (event) => {
         setPurchased(event.target.checked)
+        let itemNumber;
+        for (var prop in itemIdentifier) {
+            if (itemIdentifier.hasOwnProperty(prop)) {
+                console.log('here')
+                console.log(itemIdentifier[prop])
+                if (itemIdentifier[prop].itemName === item.itemName)
+                itemNumber = prop;
+            }
+        }
+        console.log(memberGiftList)
+        const addObject = {
+            ...memberGiftList.items, [itemNumber]: {
+              itemName: item.itemName,
+              link: item.link,
+              privateToOwner: item.privateToOwner,
+              purchased: event.target.checked
+            }
+          }
+          const newItem = giftsCollection.doc(memberGiftList.items.uid);
+          newItem.set({
+            items: addObject
+          });
     }
 
     return (

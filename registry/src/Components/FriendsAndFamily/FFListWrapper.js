@@ -40,6 +40,8 @@ function FFListWrapper({ uid, username, giftInputs, handleChange, ownerAddGift, 
                                 whoseList='member'
                                 item={memberGiftList.items[item]}
                                 username={username}
+                                itemIdentifier={memberGiftList.items}
+                                memberGiftList={memberGiftList}
                             />
                         </ul>}
                 </>

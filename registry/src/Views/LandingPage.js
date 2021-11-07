@@ -161,6 +161,8 @@ function LandingPage() {
                   <ListItem
                     item={items.items[item]}
                     whoseList='owner'
+                    username="placeholder"
+                    itemIdentifier={items.items[item]}
                   />
                 </ul>}
             </>
