@@ -5,14 +5,15 @@ import { giftsCollection, usersCollection } from "./firebase";
 export const authMethods = {
   signup: (email, password, userName, setErrors, setCurrentUserUID) => {
     firebase
-      .auth() 
+      .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         const { user } = res;
         //Creates a giftList with the user uid
+        //ANNA START HERE ITEMS: isn't working
         const newCollection = giftsCollection.doc(user.uid)
         newCollection.set({
-          uid: user.uid
+          items: { uid: user.uid }
         })
         // Creates a corresponding firestore user with the authentication user uid
         const userProfile = {

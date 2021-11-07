@@ -11,9 +11,7 @@ function ListItem({ item, whoseList, username }) {
     const [purchased, setPurchased] = useState(item.purchased)
 
     const handlePurchaseCheck = (event) => {
-        console.log(event)
-        console.log(event.target)
-        console.log(event.target.checked)
+        setPurchased(event.target.checked)
     }
 
     return (

@@ -8,9 +8,7 @@ import './ff.css'
 import FFListWrapper from "./FFListWrapper";
 
 
-function TabWrapper({ FFUsernameInput, handleFFChange, addFF, FF, giftInputs, handleChange, ownerAddGift, memberAddGift }) {
-
-    // console.log(FF)
+function TabWrapper({ FFUsernameInput, handleFFChange, addFF, FF, giftInputs, handleChange, ownerAddGift, memberAddGift, handleRadioChange }) {
 
     return (
         <Tabs defaultActiveKey="addNew" id="uncontrolled-tab-example" className="mb-3">
@@ -23,6 +21,7 @@ function TabWrapper({ FFUsernameInput, handleFFChange, addFF, FF, giftInputs, ha
                         handleChange={handleChange}
                         ownerAddGift={ownerAddGift}
                         memberAddGift={memberAddGift}
+                        handleRadioChange={handleRadioChange}
                     />
                 </Tab>
             ))}

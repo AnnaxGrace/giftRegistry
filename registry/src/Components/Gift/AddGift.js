@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 
-function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseList, memberUID }) {
+function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseList, memberUID, handleRadioChange, memberGiftList }) {
 
     return (
         <Form style={{ fontSize: 30 }}>
@@ -33,16 +33,18 @@ function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseL
                     <Form.Check
                         inline
                         label="TRUE"
-                        name="private"
+                        name="privateToOwner"
+                        onChange={handleRadioChange}
                         type='radio'
-                        id={`true`}
+                        id='true'
                     />
                     <Form.Check
                         inline
                         label="FALSE"
-                        name="private"
+                        name="privateToOwner"
+                        onChange={handleRadioChange}
                         type='radio'
-                        id={`false`}
+                        id='false'
                     />
                     <p style={{ marginTop: 30 }}>Has this gift been purchased already?</p>
                     <Form.Check
@@ -50,20 +52,21 @@ function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseL
                         label="TRUE"
                         name="purchased"
                         type='radio'
-                        id={`true`}
+                        onChange={handleRadioChange}
+                        id='true'
                     />
                     <Form.Check
                         inline
                         label="FALSE"
                         name="purchased"
+                        onChange={handleRadioChange}
                         type='radio'
-                        id={`false`}
+                        id='false'
                     />
                     <p style={{ marginBottom: 30 }}></p>
-
                 </>
             }
-            <Button onClick={whoseList === 'member'? (event) => memberAddGift(event, memberUID) : ownerAddGift} variant="dark">
+            <Button onClick={whoseList === 'member'? () => memberAddGift(memberUID, memberGiftList) : ownerAddGift} variant="dark">
                 Submit
             </Button>
         </Form>

@@ -8,17 +8,15 @@ import AddGift from "../Gift/AddGift";
 
 import ListItem from "../Gift/ListItem";
 
-function FFListWrapper({ uid, username, giftInputs, handleChange, ownerAddGift, memberAddGift }) {
+function FFListWrapper({ uid, username, giftInputs, handleChange, ownerAddGift, memberAddGift, handleRadioChange }) {
     const [memberGiftList, setMemberGiftList] = useState({ items: null })
     const [addingFFItem, setAddingFFItem] = useState(false)
-    console.log(uid)
 
     const getUserList = () => {
         giftsCollection.where("items.uid", "==", uid)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.data())
                     setMemberGiftList(doc.data())
                 });
 
@@ -59,6 +57,8 @@ function FFListWrapper({ uid, username, giftInputs, handleChange, ownerAddGift, 
               memberAddGift={memberAddGift}
               whoseList='member'
               memberUID={uid}
+              handleRadioChange={handleRadioChange}
+              memberGiftList={memberGiftList}
             />}
         </div>
     );

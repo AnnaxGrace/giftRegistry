@@ -7,18 +7,19 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 // import "./runningSections.scss";
+import "./runningSections.css"
 
 function AuthForms({ handleChange, authHandle, auth, setAuth }) {
   const { inputs, errors, loggedIn } = useContext(firebaseAuth);
 
   return (
-    <Form>
+    <Form style={{ fontSize: 30 }}>
       <Row>
         <Form.Group className="spacing" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={inputs.email}
-            name="email" 
+            name="email"
             onChange={handleChange}
             type="email"
             placeholder="Enter email"
@@ -29,20 +30,22 @@ function AuthForms({ handleChange, authHandle, auth, setAuth }) {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="spacing" controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            value={inputs.userName}
-            name="userName" 
-            onChange={handleChange}
-            type="text"
-            placeholder="Enter UserName"
+        {auth === "signup" &&
+          <Form.Group className="spacing" controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              value={inputs.userName}
+              name="userName"
+              onChange={handleChange}
+              type="text"
+              placeholder="Enter UserName"
             // autoComplete="email"
-          />
-          {/* <Form.Text className="text-muted">
+            />
+            {/* <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text> */}
-        </Form.Group>
+          </Form.Group>
+        }
 
         <Form.Group className="spacing" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
@@ -67,11 +70,13 @@ function AuthForms({ handleChange, authHandle, auth, setAuth }) {
             </div>
 
             <div className="margin-top">
-              Already signed up?{" "}
-              <button type="button" onClick={() => setAuth("login")}>
-                Log-In
-              </button>{" "}
-              instead!
+              <p>
+                Already signed up?{" "}
+                <button type="button" onClick={() => setAuth("login")}>
+                  Log-In
+                </button>{" "}
+                instead!
+              </p>
             </div>
           </>
         ) : (
@@ -84,7 +89,7 @@ function AuthForms({ handleChange, authHandle, auth, setAuth }) {
             <div className="margin-top">
               Need to sign up?{" "}
               <button type="button" onClick={() => setAuth("signup")}>
-                Sign-in
+                Sign-Up
               </button>{" "}
               instead!
             </div>
@@ -94,8 +99,8 @@ function AuthForms({ handleChange, authHandle, auth, setAuth }) {
       {loggedIn
         ? ""
         : errors.length > 0
-        ? errors.map((error) => <p style={{ color: "red" }}>{error}</p>)
-        : null}
+          ? errors.map((error) => <p style={{ color: "red" }}>{error}</p>)
+          : null}
     </Form>
   );
 }

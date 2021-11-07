@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 
 import { firebaseAuth } from "../provider/AuthProvider";
 import { giftsCollection, usersCollection } from "../firebase/firebase";
-// import { getUserList } from '../utils/GlobalFunctions'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -17,7 +16,7 @@ import TabWrapper from "../Components/FriendsAndFamily/TabWrapper";
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
   const [items, setItems] = useState({ items: null });
-  const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '', privateToOwner: false, purchase: false });
+  const [giftInputs, setGiftInputs] = useState({ itemName: '', link: '', privateToOwner: false, purchased: false });
   const [FFUsernameInput, setFFUsernameInput] = useState('')
   const [userId, setUserId] = useState(currentUserUID);
   const [addingItem, setAddingItem] = useState(false);
@@ -28,6 +27,11 @@ function LandingPage() {
     const { name, value } = event.target;
     setGiftInputs((prev) => ({ ...prev, [name]: value }));
   };
+
+  const handleRadioChange = (event) => {
+    const { name, id } = event.target;
+    setGiftInputs((prev) => ({ ...prev, [name]: JSON.parse(id) }));
+  }
 
   const handleFFChange = (event) => {
     const { name, value } = event.target;
@@ -90,25 +94,17 @@ function LandingPage() {
     setAddingItem(false)
   }
 
-  const memberAddGift = (memberUID) => {
+  const memberAddGift = (memberUID, memberGiftList) => {
     const randomNumbers = uuidv4();
     const itemIdentifier = `item${randomNumbers}`
     const addObject = {
-      ...items.items, [itemIdentifier]: {
+      ...memberGiftList.items, [itemIdentifier]: {
         itemName: giftInputs.itemName,
         link: giftInputs.link,
         privateToOwner: giftInputs.privateToOwner,
         purchased: giftInputs.purchased
       }
     }
-    setItems((prev) => ({
-      ...prev, [itemIdentifier]: {
-        itemName: giftInputs.itemName,
-        link: giftInputs.link,
-        privateToOwner: giftInputs.privateToOwner,
-        purchased: giftInputs.purchased
-      }
-    }));
     const newItem = giftsCollection.doc(memberUID);
     newItem.set({
       items: addObject
@@ -117,16 +113,12 @@ function LandingPage() {
   }
 
   const addFF = () => {
-    console.log(FFUsernameInput);
     usersCollection.where("username", "==", FFUsernameInput)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(doc.data());
           const addNewMember = FF;
           addNewMember.push(doc.data());
-          console.log(user)
-          console.log(addNewMember)
           const addNewFF = {
             members: addNewMember,
             uid: user.uid,
@@ -161,11 +153,10 @@ function LandingPage() {
     <Container className='containerMargin' fluid={true}>
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
         <Col md={5} className='lists'>
-          <h2 style={{fontSize: 45}}>My List</h2>
-          {console.log(items.items)}
+          <h2 style={{ fontSize: 45 }}>My List</h2>
           {items.items && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
             <>
-              {typeof items.items[item] !== 'string' &&
+              {typeof items.items[item] !== 'string' && items.items[item].privateToOwner === false &&
                 <ul id={index}>
                   <ListItem
                     item={items.items[item]}
@@ -175,7 +166,7 @@ function LandingPage() {
             </>
           ))}
           <Row style={{ marginLeft: 0, marginRight: 0 }}>
-            <h3 style={{fontSize: 40}}>Add an item</h3>
+            <h3 style={{ fontSize: 40 }}>Add an item</h3>
             {addingItem ? <i onClick={() => { setAddingItem(false) }} style={{ marginLeft: 10, marginTop: 10 }} class="fas fa-minus-square"></i> :
               <i onClick={() => { setAddingItem(true) }} style={{ marginLeft: 10, marginTop: 10 }} className="fas fa-plus-square"></i>}
           </Row>
@@ -189,7 +180,7 @@ function LandingPage() {
             />}
         </Col>
         <Col md={5} className='lists'>
-          <h2 style={{fontSize: 45}}>Friends and Family</h2>
+          <h2 style={{ fontSize: 45 }}>Friends and Family</h2>
           <TabWrapper
             FFUsernameInput={FFUsernameInput}
             handleFFChange={handleFFChange}
@@ -199,6 +190,7 @@ function LandingPage() {
             handleChange={handleChange}
             ownerAddGift={ownerAddGift}
             memberAddGift={memberAddGift}
+            handleRadioChange={handleRadioChange}
           />
         </Col>
       </Row>

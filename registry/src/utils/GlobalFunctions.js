@@ -3,7 +3,6 @@ import { giftsCollection } from "../firebase/firebase";
 
 const getUserList =  (uid) => {
     // await currentUserUID !== null;
-    console.log(uid)
     let dataToReturn;
     giftsCollection.where("items.uid", "==", uid)
         .get()
