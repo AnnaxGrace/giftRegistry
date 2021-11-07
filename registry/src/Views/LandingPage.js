@@ -68,7 +68,7 @@ function LandingPage() {
       });
   }
 
-  const ownerAddGift = () => {
+  const ownerAddGift = async () => {
     const randomNumbers = uuidv4();
     const itemIdentifier = `item${randomNumbers}`
     const addObject = {
@@ -88,13 +88,15 @@ function LandingPage() {
       }
     }));
     const newItem = giftsCollection.doc(currentUserUID);
-    newItem.set({
+    await newItem.set({
       items: addObject
     });
+    window.location.reload(false);
+
     setAddingItem(false)
   }
 
-  const memberAddGift = (memberUID, memberGiftList) => {
+  const memberAddGift = async (memberUID, memberGiftList) => {
     const randomNumbers = uuidv4();
     const itemIdentifier = `item${randomNumbers}`
     const addObject = {
@@ -106,10 +108,11 @@ function LandingPage() {
       }
     }
     const newItem = giftsCollection.doc(memberUID);
-    newItem.set({
+    await newItem.set({
       items: addObject
     });
     setAddingItem(false)
+    window.location.reload(false);
   }
 
   const addFF = () => {
@@ -162,7 +165,9 @@ function LandingPage() {
                     item={items.items[item]}
                     whoseList='owner'
                     username="placeholder"
-                    itemIdentifier={items.items[item]}
+                    itemIdentifier={items.items}
+                    memberGiftList={items}
+
                   />
                 </ul>}
             </>
