@@ -64,9 +64,9 @@ function AuthForms({ handleChange, authHandle, auth, setAuth }) {
         {auth === "signup" ? (
           <>
             <div className="btn-div margin-top">
-              <Button onClick={authHandle} variant="primary" type="submit">
+              <button onClick={authHandle} type="submit">
                 Sign-Up
-              </Button>
+              </button>
             </div>
 
             <div className="margin-top">

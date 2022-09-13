@@ -5,3 +5,12 @@
   .margin-top {
     margin-top: 43px;
   }
+
+  button {
+    background: url('../../assets/sparkle.jpeg') no-repeat;
+    color: black !important;
+    font-size: 3rem !important;
+    border-radius: 12px;
+    font-weight: bold;
+    border-color: goldenrod;
+}

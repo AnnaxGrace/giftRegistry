@@ -20,6 +20,8 @@ header {
         height: 40px;
         border-color: $primary-color;
         margin-top: 10px;
+        font-weight: bold;
+        border-color: goldenrod;
       }
 
       #signout-btn:hover {
@@ -65,6 +67,15 @@ header {
       margin-right: 60px;
     }
 
+    button {
+      background: url('../assets/sparkle.jpeg') no-repeat;
+      color: black !important;
+      font-size: 3rem !important;
+      border-radius: 12px;
+      font-weight: bold;
+      border-color: goldenrod;
+  }
+
     .margin-top {
       margin-top: 43px;
     }
@@ -73,12 +84,16 @@ header {
       background-color: $primary-color;
       height: 40px;
       border-color: $primary-color;
+      font-weight: bold;
+      border-color: goldenrod;
     }
 
     button[type="submit"]:hover {
       background-color: $primary-color;
       color: white;
       border-color: $secondary-color;
+      font-weight: bold;
+    border-color: goldenrod;
     }
 
     button[type="submit"]:active {

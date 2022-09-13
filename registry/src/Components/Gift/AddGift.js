@@ -29,10 +29,10 @@ function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseL
             </Form.Group>
             {whoseList === 'member' &&
                 <>
-                    <p>Private to recipient?</p>
+                    <p>Should the recipent not be able to see this item?</p>
                     <Form.Check
                         inline
-                        label="TRUE"
+                        label="Yes"
                         name="privateToOwner"
                         onChange={handleRadioChange}
                         type='radio'
@@ -40,16 +40,16 @@ function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseL
                     />
                     <Form.Check
                         inline
-                        label="FALSE"
+                        label="No"
                         name="privateToOwner"
                         onChange={handleRadioChange}
                         type='radio'
                         id='false'
                     />
-                    <p style={{ marginTop: 30 }}>Has this gift been purchased already?</p>
+                    <p style={{ marginTop: 30 }}>Have you purchased this gift already?</p>
                     <Form.Check
                         inline
-                        label="TRUE"
+                        label="Yes"
                         name="purchased"
                         type='radio'
                         onChange={handleRadioChange}
@@ -57,7 +57,7 @@ function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseL
                     />
                     <Form.Check
                         inline
-                        label="FALSE"
+                        label="No"
                         name="purchased"
                         onChange={handleRadioChange}
                         type='radio'

@@ -60,9 +60,9 @@ function Header() {
                 {!loggedIn && "Sign Up/Log-in"}
               </Accordion.Toggle>
               {loggedIn && (
-                <Button variant="link" id="signout-btn" onClick={handleSignout}>
+                <button variant="link" id="signout-btn" onClick={handleSignout}>
                   sign out
-                </Button>
+                </button>
               )}
             </Row>
           </Card.Header>
