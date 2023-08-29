@@ -17,10 +17,10 @@ ul {
 }
 
 button {
-    background: url('../assets/gold_sparkle.jpeg') no-repeat;
+    background-color: rgba(255, 242, 128, 1) !important;
     color: black !important;
     font-size: 3rem !important;
     border-radius: 12px;
-    font-weight: bold;
-    border-color: goldenrod;
+    font-weight: 100;
+    
 }

@@ -66,7 +66,7 @@ function AddGift({ giftInputs, handleChange, ownerAddGift, memberAddGift, whoseL
                     <p style={{ marginBottom: 30 }}></p>
                 </>
             }
-            <Button onClick={whoseList === 'member'? () => memberAddGift(memberUID, memberGiftList) : ownerAddGift} variant="dark">
+            <Button className="submit-btn" onClick={whoseList === 'member'? () => memberAddGift(memberUID, memberGiftList) : ownerAddGift}>
                 Submit
             </Button>
         </Form>

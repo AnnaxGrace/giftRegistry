@@ -18,7 +18,7 @@ function AddFF({ FFUsernameInput, handleFFChange, addFF, FF }) {
                 />
             </Form.Group>
 
-            <Button onClick={addFF} variant="dark">
+            <Button className="submit-btn"onClick={addFF} variant="dark">
                 Submit
             </Button>
         </Form>
