@@ -155,7 +155,7 @@ function LandingPage() {
   return (
     <Container className='containerMargin' fluid={true}>
       <Row style={{ marginLeft: 0, marginRight: 0 }}>
-        <Col md={5} className='lists'>
+        <Col md={5} className='list1'>
           <h2 style={{ fontSize: 45 }}>My List</h2>
           {items.items && items.items.uid !== null && Object.keys(items.items).map((item, index) => (
             <>
@@ -186,7 +186,7 @@ function LandingPage() {
               whoseList='owner'
             />}
         </Col>
-        <Col md={5} className='lists'>
+        <Col md={5} className='list2'>
           <h2 style={{ fontSize: 45 }}>Friends and Family</h2>
           <TabWrapper
             FFUsernameInput={FFUsernameInput}

@@ -16,3 +16,57 @@
      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
  
 }
+
+header {
+  background-color: rgba(243, 255, 237, 0.86);
+  text-align: right;
+
+  .accordion {
+    background-color: rgba(243, 255, 237, 0.86);
+    border: 0px solid rgba(243, 255, 237, 0.86);
+
+    .user-row {
+      justify-content: flex-start;
+
+      a[href="#/cart"] {
+        color: white;
+      }
+
+      /* #signout-btn {
+        background-color: blue;
+        height: 40px;
+        border-color: red;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      #signout-btn:hover {
+        background-color: blue;
+        color: white;
+        border-color: red;
+      }
+
+      #signout-btn:active {
+        background-color: blue;
+        border-color: red;
+        outline: none;
+      }
+
+      #accordion-toggle {
+        color: rgb(255, 24, 24);
+        padding: 0;
+      } */
+    }
+
+    #accordion-toggle:focus {
+      color: white;
+      box-shadow: 0 0 0.2rem rgb(175, 175, 175);
+    }
+  }
+}
+
+.card-body{
+background-color: rgba(243, 255, 237, 0.86);
+}
+
+

@@ -5,9 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: rgb(148, 197, 197)
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.App {
+  font-family: "Comfortaa", cursive;
+  background-color: rgba(243, 255, 237, 0.86);
+
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  background-color:rgba(243, 255, 237, 0.86); 
 }

@@ -67,7 +67,7 @@ function Header() {
             </Row>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
-            <Card.Body>
+            <Card.Body className="card-body">
               {!loggedIn ? (
                 <AuthForms
                   authHandle={authHandle}
