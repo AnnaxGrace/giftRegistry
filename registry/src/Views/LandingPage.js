@@ -12,6 +12,7 @@ import ListItem from "../Components/Gift/ListItem";
 import AddGift from "../Components/Gift/AddGift";
 import AddFF from "../Components/FriendsAndFamily/AddFF";
 import TabWrapper from "../Components/FriendsAndFamily/TabWrapper";
+import Presents from "../assets/present-row.png"
 
 function LandingPage() {
   const { currentUserUID } = useContext(firebaseAuth);
@@ -201,6 +202,7 @@ function LandingPage() {
           />
         </Col>
       </Row>
+      <Row className="present-img-container"><Col className="present-img"> <img src={Presents} className="presents-img" alt="presents in row"/> </Col></Row>
     </Container>
   );
 }

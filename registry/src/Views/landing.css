@@ -18,8 +18,12 @@
 .list2 {
     background-color: rgba(255, 143, 96, 1);
 }
-
-
+.present-img-container{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255, 143, 96, 1); 
+    margin-right: 90px;
+}
 
 ul {
     list-style-type: none;

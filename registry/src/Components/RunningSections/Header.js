@@ -11,7 +11,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-
+import Banner from "../../assets/banners.png"
 import Avatar from "../../assets/gus_2_112x112.png";
 
 // import "./runningSections.scss";
@@ -56,9 +56,10 @@ function Header() {
                 as={Button}
                 variant="link"
                 eventKey="0"
-              >
+              > 
                 {!loggedIn && "Sign Up/Log-in"}
               </Accordion.Toggle>
+              <Row className="user-row"> <img src={Banner} className="banner-img" alt="banner image"/> </Row>
               {loggedIn && (
                 <button variant="link" id="signout-btn" onClick={handleSignout}>
                   sign out
