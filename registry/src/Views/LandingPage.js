@@ -22,6 +22,8 @@ function LandingPage() {
   const [addingItem, setAddingItem] = useState(false);
   const [FF, setFF] = useState([]);
   const [user, setUser] = useState()
+  const [showAddFFAlert, setShowAddFFAlert] = useState(false);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -119,6 +121,10 @@ function LandingPage() {
     usersCollection.where("username", "==", FFUsernameInput)
       .get()
       .then((querySnapshot) => {
+        console.log(querySnapshot.docs.length)
+        if (!querySnapshot.docs.length){
+          setShowAddFFAlert(true)
+        }
         querySnapshot.forEach((doc) => {
           const addNewMember = FF;
           addNewMember.push(doc.data());
@@ -198,6 +204,8 @@ function LandingPage() {
             ownerAddGift={ownerAddGift}
             memberAddGift={memberAddGift}
             handleRadioChange={handleRadioChange}
+            showAddFFAlert={showAddFFAlert}
+            setShowAddFFAlert={setShowAddFFAlert}
           />
         </Col>
       </Row>

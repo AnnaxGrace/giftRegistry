@@ -51,14 +51,14 @@ function Header() {
         <Card>
           <Card.Header className="accordion">
             <Row className="user-row">
-              <Accordion.Toggle
+              {!loggedIn && <Accordion.Toggle
                 id="accordion-toggle"
                 as={Button}
                 variant="link"
                 eventKey="0"
               >
                 {!loggedIn && "Sign Up/Log-in"}
-              </Accordion.Toggle>
+              </Accordion.Toggle>}
               {loggedIn && (
                 <button variant="link" id="signout-btn" onClick={handleSignout}>
                   sign out

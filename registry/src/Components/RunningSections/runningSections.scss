@@ -22,46 +22,52 @@ header {
         margin-top: 10px;
         font-weight: bold;
         border-color: goldenrod;
-      }
-
-      #signout-btn:hover {
-        background-color: $secondary-color;
-        color: white;
-        border-color: $primary-color;
-      }
-
-      #signout-btn:active {
-        background-color: $secondary-color;
-        border-color: $primary-color;
-        outline: none;
-      }
-
-      #accordion-toggle {
-        color: white;
-        padding: 0;
-
-        img {
-          margin: 10px;
-          border: 2px $secondary-color solid;
-          border-radius: 22px;
-        }
+        margin-right: 0;
+        margin-left: auto;
+        display: block;
       }
     }
 
-    #accordion-toggle:focus {
+    #signout-btn:hover {
+      background-color: $secondary-color;
       color: white;
-      box-shadow: 0 0 0.2rem $primary-color;
+      border-color: $primary-color;
+    }
+
+    #signout-btn:active {
+      background-color: $secondary-color;
+      border-color: $primary-color;
+      outline: none;
+    }
+
+    #accordion-toggle {
+      color: white;
+      padding: 0;
+
+      img {
+        margin: 10px;
+        border: 2px $secondary-color solid;
+        border-radius: 22px;
+      }
     }
   }
+
+  #accordion-toggle:focus {
+    color: white;
+    box-shadow: 0 0 0.2rem $primary-color;
+  }
 }
+
 
 // AuthForms.js
 header {
   form {
     text-align: left;
+
     .spacing {
       margin: 10px;
     }
+
     .btn-div {
       margin: 0px 10px;
       margin-right: 60px;
@@ -74,7 +80,7 @@ header {
       border-radius: 12px;
       font-weight: bold;
       border-color: goldenrod;
-  }
+    }
 
     .margin-top {
       margin-top: 43px;
@@ -93,7 +99,7 @@ header {
       color: white;
       border-color: $secondary-color;
       font-weight: bold;
-    border-color: goldenrod;
+      border-color: goldenrod;
     }
 
     button[type="submit"]:active {
@@ -117,6 +123,7 @@ header {
     }
   }
 }
+
 // **********
 
 
@@ -189,9 +196,10 @@ footer {
 
 /* Mobile */
 @media screen and (max-width: 550px) {
+
   #logo,
   #hide {
-    font-size: 30px !important ;
+    font-size: 30px !important;
   }
 
   .navbar-links {
